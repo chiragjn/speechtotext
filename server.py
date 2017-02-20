@@ -13,7 +13,7 @@ def convert():
     print wav_url
     os.system("wget -O Twilio.wav " + wav_url)
     # time.sleep(3)
-    text = "We done fucked up"
+    text = "Failed to transcribe"
     r = sr.Recognizer()
     try:
         with sr.WavFile('Twilio.wav') as source:
@@ -22,10 +22,10 @@ def convert():
             text = r.recognize_google(audio, language="en-us", show_all=False)
             print text
         except LookupError, e:
-            print "Autism strikes!"
+            print "Lookup Error!"
             print e.message
     except Exception, e:
-        print "Fucking file didn't work! "
+        print "File Download error"
         print e.message
     return text
 
@@ -35,4 +35,3 @@ if __name__ == '__main__':
         host="0.0.0.0",
         port=int("8000")
   )
-  print "Server is up!"
